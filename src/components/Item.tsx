@@ -1,18 +1,20 @@
-import {GameItem, ItemType} from "../types";
+import { GameItem, ItemType } from "../types";
 import './style.css';
 
 type Props = {
-  onClick: (type: ItemType) => void;
-} & GameItem;
+  className?: string
+  item: GameItem;
+  onClick?: (type: ItemType) => void;
+};
 
-export const Item = ({ onClick, type, image, label }: Props) => {
+export const Item = ({ className = '', onClick, item }: Props) => {
   const handleClick = () => {
-    onClick(type);
+    onClick && onClick(item.type);
   };
 
   return (
-    <div className='game-item' onClick={handleClick}>
-      <img src={image} alt={label} />
+    <div className={`game-item ${className}`} onClick={handleClick}>
+      <img src={item.image} alt={item.label} />
     </div>
   );
 };

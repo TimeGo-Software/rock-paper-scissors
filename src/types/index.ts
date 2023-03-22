@@ -1,7 +1,7 @@
 export enum ItemType {
-  Rock,
-  Paper,
-  Scissors,
+  Rock = 'Rock',
+  Paper = 'Paper',
+  Scissors = 'Scissors',
 }
 
 export type ResultType = 'win' | 'lost' | 'tied';

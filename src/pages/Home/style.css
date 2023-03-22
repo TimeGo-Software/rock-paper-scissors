@@ -2,8 +2,48 @@
   background-color: #90c9bf;
   height: 100vh;
   width: 100vw;
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
 }
 
 .game-items {
+  margin: 0 auto;
+  width: 720px;
+  height: 350px;
   display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.game-items .game-item.on-game {
+  position: absolute;
+  top: 0;
+}
+
+.game-items .game-item.on-game.left {
+  left: 0;
+}
+
+.game-items .game-item.on-game.right {
+  right: 0;
+}
+
+.home-container h1 {
+  margin-top: 100px;
+  text-align: center;
+  color: white;
+}
+
+.slide {
+  animation-name: slide;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  animation-duration: 0.7s;
+}
+
+@keyframes slide {
+  0% { left: 240px; }
+  100% { left: 0; }
 }
