@@ -1,9 +1,13 @@
 .game-item {
   width: 240px;
+  cursor: pointer;
 }
 
-.game-item img {
-  cursor: pointer;
+.game-item img:not(.shadow) {
   height: 300px;
   margin: 0 20px;
+}
+
+.game-item img.shadow {
+  width: 240px;
 }

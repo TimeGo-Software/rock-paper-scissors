@@ -1,6 +1,6 @@
 import {gameItems} from "../../const";
 import {Item} from "../../components/Item";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {ItemType, Result} from "../../types";
 import {getGameItemByType, judgeResult, randomlySelectedItem} from "../../util";
 import classnames from 'classnames';
@@ -12,14 +12,21 @@ export const Home = () => {
   const [result, setResult] = useState<Result | null>(null);
   const [score, setScore] = useState(0);
 
+  useEffect(() => {
+    if (userItem) {
+      setTimeout(() => {
+        handlePlay();
+      }, 700);
+    }
+    // eslint-disable-next-line
+  }, [userItem]);
+
   const handleSelect = (type: ItemType) => {
     setUserItem(type);
-    setTimeout(() => {
-      handlePlay();
-    }, 700);
   };
 
   const handlePlay = () => {
+    console.log('here!!!');
     const botItem = randomlySelectedItem();
     setBotItem(botItem);
 
@@ -29,6 +36,12 @@ export const Home = () => {
       setScore(score + roundResult.score);
     }
   }
+
+  const handleInit = () => {
+    setResult(null);
+    setUserItem(null);
+    setBotItem(null);
+  };
 
   return (
     <div className='home-container'>
@@ -52,9 +65,18 @@ export const Home = () => {
             item={getGameItemByType(userItem)}
           />
         )}
+        {result && (
+          <div className='game-result fade-in'>
+            <h1>{result.text}</h1>
+            <div className="game-score">
+              <h1>{score}</h1>
+            </div>
+            <div className='game-replay' onClick={handleInit}>Play again?</div>
+          </div>
+        )}
         {botItem && (
           <Item
-            className={classnames('on-game bot', {
+            className={classnames('on-game bot fade-in', {
               left: userItem === ItemType.Scissors,
               right: userItem !== ItemType.Scissors,
             })}
@@ -63,7 +85,7 @@ export const Home = () => {
         )}
       </div>
 
-      <h1>Rock-Paper-Scissors Game</h1>
+      <h1 className="game-title">Rock-Paper-Scissors Game</h1>
     </div>
   );
 };

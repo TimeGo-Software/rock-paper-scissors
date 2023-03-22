@@ -15,6 +15,7 @@ export const Item = ({ className = '', onClick, item }: Props) => {
   return (
     <div className={`game-item ${className}`} onClick={handleClick}>
       <img src={item.image} alt={item.label} />
+      <img className='shadow' src={require("../assets/shadow.png")} />
     </div>
   );
 };
