@@ -1,11 +1,17 @@
-import { GameItem } from "../types";
+import {GameItem, ItemType} from "../types";
 import './style.css';
 
-type Props = GameItem;
+type Props = {
+  onClick: (type: ItemType) => void;
+} & GameItem;
 
-export const Item = ({ type, image, label }: Props) => {
+export const Item = ({ onClick, type, image, label }: Props) => {
+  const handleClick = () => {
+    onClick(type);
+  };
+
   return (
-    <div className='game-item'>
+    <div className='game-item' onClick={handleClick}>
       <img src={image} alt={label} />
     </div>
   );
