@@ -26,7 +26,6 @@ export const Home = () => {
   };
 
   const handlePlay = () => {
-    console.log('here!!!');
     const botItem = randomlySelectedItem();
     setBotItem(botItem);
 
